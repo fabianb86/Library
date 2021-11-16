@@ -1,5 +1,7 @@
 import React from "react";
+import axios from "axios";
 import { Container, Form, Button, Row, Col } from "react-bootstrap";
+import {APIHOST as host} from "../../App.json";
 import "./Login.css";
 
 export default class Login extends React.Component {
@@ -13,7 +15,17 @@ export default class Login extends React.Component {
 
   // Método Iniciar Sesión
   iniciarSesion() {
-    alert(`usuario: ${this.state.usuario} password: ${this.state.pass}`);
+    axios.post(`${host}/usuarios/login`, {
+      usuario: this.state.usuario,
+      pass: this.state.pass,
+    })
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    // alert(`usuario: ${this.state.usuario} password: ${this.state.pass}`);
   }
 
   render() {
