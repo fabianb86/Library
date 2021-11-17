@@ -1,5 +1,7 @@
 import React from "react";
+import axios from "axios";
 import { Container, Form, Button, Row, Col } from "react-bootstrap";
+import { APIHOST as host } from "../../app.json";
 import "./Login.css";
 
 export default class Login extends React.Component {
@@ -10,21 +12,28 @@ export default class Login extends React.Component {
       pass: "",
     };
   }
-
-  // Método Iniciar Sesión
   iniciarSesion() {
-    alert(`usuario: ${this.state.usuario} password: ${this.state.pass}`);
+    axios
+      .post(`${host}/usuarios/login`, {
+        usuario: this.state.usuario,
+        pass: this.state.pass,
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    //alert(`usuario: ${this.state.usuario} - password: ${this.state.pass}`);
   }
-
   render() {
     return (
       <Container id="login-container">
         <Row>
           <Col>
             <Row>
-              <h2>Iniciar Sesión</h2>
+              <h2>Iniciar sesión</h2>
             </Row>
-
             <Row>
               <Col
                 sm="12"
@@ -41,6 +50,7 @@ export default class Login extends React.Component {
                         this.setState({ usuario: e.target.value })
                       }
                     />
+                    {this.state.usuario}
                   </Form.Group>
 
                   <Form.Group>
@@ -49,15 +59,15 @@ export default class Login extends React.Component {
                       type="password"
                       onChange={(e) => this.setState({ pass: e.target.value })}
                     />
+                    {this.state.pass}
                   </Form.Group>
-
                   <Button
-                    variant="dark"
+                    variant="success"
                     onClick={() => {
                       this.iniciarSesion();
                     }}
                   >
-                    Iniciar Sesión
+                    Iniciar sesión
                   </Button>
                 </Form>
               </Col>

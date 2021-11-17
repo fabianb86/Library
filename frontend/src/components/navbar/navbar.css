@@ -1,0 +1,23 @@
+#navbar #dropdown-header .row:nth-child(1) {
+  font-size: 70px;
+  display: flex;
+  justify-content: center;
+}
+#navbar #dropdown-header .row:nth-child(2) {
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+}
+#navbar .dropdown-item .svg-inline--fa {
+  margin-right: 11px;
+}
+
+.logo {
+  width: 26%;
+}
+
+.navbar-expand {
+  background-color: #fff;
+  box-shadow: 1px 1px 11px gray;
+}
