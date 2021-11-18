@@ -21,11 +21,11 @@ exports.login = function (req, res, next) {
             id: usuario._id,
             usuario: usuario.usuario,
           },
-          "__secret__",
+          "__secret__"
         );
       }
 
       res.json(response);
-    },
+    }
   );
 };
