@@ -6,7 +6,6 @@ import {
   Nav,
   Navbar,
   Row,
-  Col,
 } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
@@ -24,10 +23,10 @@ export default class Topmenu extends React.Component {
     return (
       <Navbar fixed="top" id="navbar" variant="dark">
         <Container>
-          <img className="logo" src={logo} />
+          <img className="logo" src={logo} alt="logo" />
           <Navbar.Brand href="#home">
             {" "}
-            Grupo 14 MinTic <spam id="usuario-sub-branm"></spam>
+            Grupo 14 MinTic <span id="usuario-sub-branm"></span>
           </Navbar.Brand>
           <NavbarToggle sria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">

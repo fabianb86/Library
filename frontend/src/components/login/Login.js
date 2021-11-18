@@ -3,32 +3,48 @@ import axios from "axios";
 import { Container, Form, Button, Row, Col } from "react-bootstrap";
 import { APIHOST as host } from "../../app.json";
 import "./Login.css";
-
+import { isNull } from "util";
+import cookies from "universal-cookie";
+import { calculaExracionSesion } from "../helper/helper";
+import Loading from "../loading/loading";
 export default class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      loading: false,
       usuario: "",
       pass: "",
     };
   }
   iniciarSesion() {
+    this.setState({ loading: true });
     axios
       .post(`${host}/usuarios/login`, {
         usuario: this.state.usuario,
         pass: this.state.pass,
       })
       .then((response) => {
-        console.log(response);
+        this.setState({ loading: false });
+        if (isNull(response.data.token)) {
+          console.error("Usuario y/o contraseña invalido");
+        } else {
+          cookies.set("_s", response.data.token, {
+            path: "/",
+            expires: calculaExracionSesion(),
+          });
+        }
       })
       .catch((err) => {
         console.log(err);
+        this.setState({ loading: false });
       });
     //alert(`usuario: ${this.state.usuario} - password: ${this.state.pass}`);
   }
   render() {
     return (
       <Container id="login-container">
+        <Loading show={this.state.loading} />
+        <Loading />
         <Row>
           <Col>
             <Row>
@@ -50,7 +66,6 @@ export default class Login extends React.Component {
                         this.setState({ usuario: e.target.value })
                       }
                     />
-                    {this.state.usuario}
                   </Form.Group>
 
                   <Form.Group>
@@ -59,7 +74,6 @@ export default class Login extends React.Component {
                       type="password"
                       onChange={(e) => this.setState({ pass: e.target.value })}
                     />
-                    {this.state.pass}
                   </Form.Group>
                   <Button
                     variant="success"
