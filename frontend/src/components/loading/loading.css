@@ -11,7 +11,7 @@
   justify-content: center;
 }
 
-#loading-backdrop.spinner-border{
+#loading-backdrop .spinner-border{
   width: 100px;
   height: 100px;
 }

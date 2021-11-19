@@ -1,11 +1,15 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Login from "../login/Login";
+import Login from "../login/login";
+import PrivateRoute from "../auth/privateroute";
+import Catalogo from "../libros/libros.buscar";
+
 export default function AppRouter() {
   return (
     <Router>
       <Switch>
         <Route exact path={["/", "/login"]} component={Login} />
+        <PrivateRoute exact path="/catalogo" component={Catalogo} />
 
         {/* Ruta de páginas que no existen, error 404 */}
         <Route

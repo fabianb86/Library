@@ -2,11 +2,13 @@ import React from "react";
 import axios from "axios";
 import { Container, Form, Button, Row, Col } from "react-bootstrap";
 import { APIHOST as host } from "../../app.json";
-import "./Login.css";
+import "./login.css";
 import { isNull } from "util";
-import cookies from "universal-cookie";
-import { calculaExracionSesion } from "../helper/helper";
+import Cookies from "universal-cookie";
+import { calculaExpiracionSesion } from "../helper/helper";
 import Loading from "../loading/loading";
+
+const cookies = new Cookies();
 export default class Login extends React.Component {
   constructor(props) {
     super(props);
@@ -24,21 +26,23 @@ export default class Login extends React.Component {
         pass: this.state.pass,
       })
       .then((response) => {
-        this.setState({ loading: false });
         if (isNull(response.data.token)) {
-          console.error("Usuario y/o contraseña invalido");
+          alert("Usuario y/o contraseña invalidos");
         } else {
           cookies.set("_s", response.data.token, {
             path: "/",
-            expires: calculaExracionSesion(),
+            expires: calculaExpiracionSesion(),
           });
+
+          this.props.history.push("/catalogo");
         }
+
+        this.setState({ loading: false });
       })
       .catch((err) => {
         console.log(err);
         this.setState({ loading: false });
       });
-    //alert(`usuario: ${this.state.usuario} - password: ${this.state.pass}`);
   }
   render() {
     return (
@@ -75,6 +79,7 @@ export default class Login extends React.Component {
                       onChange={(e) => this.setState({ pass: e.target.value })}
                     />
                   </Form.Group>
+
                   <Button
                     variant="success"
                     onClick={() => {
