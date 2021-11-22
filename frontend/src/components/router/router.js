@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Login from "../login/login";
+import Login from "../login/Login";
 import PrivateRoute from "../auth/privateroute";
 import Catalogo from "../libros/libros.buscar";
 
