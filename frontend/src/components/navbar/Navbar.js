@@ -26,7 +26,7 @@ export default class Topmenu extends React.Component {
           <img className="logo" src={logo} alt="logo" />
           <Navbar.Brand href="#home">
             {" "}
-            Grupo 14 MinTic <span id="usuario-sub-branm"></span>
+            Grupo 14 MinTic Equipo 4 <span id="usuario-sub-branm"></span>
           </Navbar.Brand>
           <NavbarToggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
