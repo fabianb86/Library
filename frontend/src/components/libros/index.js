@@ -1,14 +1,21 @@
 import React from "react";
-import { Container, Row, Nav } from "react-bootstrap";
+import { Container, Nav, Row } from "react-bootstrap";
 import LibrosBuscar from "./crud/buscar";
+import LibrosCrear from "./crud/crear";
 import "./libros.css";
-export default class libros extends React.Component {
+export default class Libros extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       currentTab: "buscar",
     };
+    this.changeTab = this.changeTab.bind(this);
   }
+
+  changeTab(tab) {
+    this.setState({ currentTab: tab });
+  }
+
   render() {
     return (
       <Container id="libros-container">
@@ -16,7 +23,7 @@ export default class libros extends React.Component {
           <Nav
             fill
             variant="tabs"
-            defaultActiveKey="/buscar"
+            defaultActiveKey="buscar"
             onSelect={(eventKey) => this.setState({ currentTab: eventKey })}
           >
             <Nav.Item>
@@ -28,7 +35,11 @@ export default class libros extends React.Component {
           </Nav>
         </Row>
         <Row>
-          {this.state.currentTab === "buscar" ? <LibrosBuscar /> : null}
+          {this.state.currentTab === "buscar" ? (
+            <LibrosBuscar />
+          ) : (
+            <LibrosCrear changeTab={this.changeTab} />
+          )}
         </Row>
       </Container>
     );

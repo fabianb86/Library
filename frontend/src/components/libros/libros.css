@@ -1,6 +1,10 @@
-#libros-buscar-container,
 #libros-container {
   margin-top: 150px;
+}
+
+#libros-buscar-container,
+#libros-crear-container {
+  margin-top: 50px;
 }
 
 .react-bs-table-sizePerPage-dropdown .dropdown-toggle {
@@ -15,4 +19,9 @@
 
 .sr-only {
   font-size: 0;
+}
+
+#libros-crear-container .form-label {
+  float: left;
+  margin-top: 10px;
 }

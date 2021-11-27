@@ -1,9 +1,14 @@
 import React from "react";
 import { Container, Row } from "react-bootstrap";
-//import "./libros.css";
+// import "./libros.css";
 import DataGrid from "../../grid/grid";
 
 const columns = [
+  {
+    dataField: "_id",
+    text: "ID",
+    hidden: true,
+  },
   {
     dataField: "titulo",
     text: "Titulo",
@@ -34,7 +39,7 @@ const columns = [
   },
 ];
 
-export default class librosBuscar extends React.Component {
+export default class LibrosBuscar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -49,7 +54,7 @@ export default class librosBuscar extends React.Component {
           <h1>Catálogo de libros</h1>
         </Row>
         <Row>
-          <DataGrid url="/catalogo" columns={columns} />
+          <DataGrid url="/libros" columns={columns} />
         </Row>
       </Container>
     );

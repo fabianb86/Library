@@ -34,7 +34,7 @@ export default class Login extends React.Component {
             expires: calculaExpiracionSesion(),
           });
 
-          this.props.history.push("/libros");
+          this.props.history.push("/catalogo");
         }
 
         this.setState({ loading: false });
@@ -48,7 +48,6 @@ export default class Login extends React.Component {
     return (
       <Container id="login-container">
         <Loading show={this.state.loading} />
-        <Loading />
         <Row>
           <Col>
             <Row>
