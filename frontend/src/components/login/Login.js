@@ -34,7 +34,7 @@ export default class Login extends React.Component {
             expires: calculaExpiracionSesion(),
           });
 
-          this.props.history.push("/catalogo");
+          this.props.history.push("/libros");
         }
 
         this.setState({ loading: false });

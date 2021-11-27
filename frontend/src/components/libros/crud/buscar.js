@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row } from "react-bootstrap";
-import "./libros.css";
-import DataGrid from "../grid/grid";
+//import "./libros.css";
+import DataGrid from "../../grid/grid";
 
 const columns = [
   {
