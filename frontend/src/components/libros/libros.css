@@ -25,3 +25,93 @@
   float: left;
   margin-top: 10px;
 }
+
+#catalogo {
+  background-image: url(../img/banner1.jpg);
+  min-height: 11rem;
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.nav-fill .nav-item .nav-link,
+.nav-justified .nav-item .nav-link {
+  font-size: 1.2rem;
+  color: #6cb5e7;
+  font-weight: bold;
+}
+
+.nav-tabs {
+  border-bottom: none;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+}
+
+#botones {
+  display: flex;
+  justify-content: center;
+}
+
+.nav-fill .nav-item,
+.nav-fill > .nav-link {
+  flex: 0 0;
+  margin: 0 2rem;
+}
+
+#libros-container #botones .svg-inline--fa {
+  border: 1px solid #6cb5e7;
+  border-radius: 100%;
+  color: #fff;
+  background-color: #6cb5e7;
+  font-size: 4rem;
+  padding: 1rem;
+  width: auto;
+}
+
+#botones .nav-item:hover {
+  transform: scale(1.2);
+  transition: 0.5s;
+}
+
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+  border-color: transparent;
+}
+
+.nav-tabs .nav-link:focus,
+.nav-tabs .nav-link:hover {
+  border-color: transparent;
+}
+
+.table .btn-primary,
+.table .btn-primary:focus,
+.table .btn-primary:hover {
+  color: #fff;
+  background-color: #0699a0;
+  border-color: #0699a0;
+}
+
+#libros-buscar-container a {
+  color: #000000;
+  text-decoration: none;
+}
+
+#libros-buscar-container .pagination .page-item.active .page-link {
+  color: #fff;
+  text-decoration: none;
+  background-color: #0699a0;
+  border-color: #0699a0;
+}
+
+#libros-crear-container .btn-primary,
+#libros-crear-container .btn-primary:focus,
+#libros-crear-container .btn-primary:hover {
+  color: #fff;
+  background-color: #0699a0;
+  border-color: #0699a0;
+}

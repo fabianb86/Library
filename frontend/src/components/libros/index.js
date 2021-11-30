@@ -3,6 +3,9 @@ import { Container, Nav, Row } from "react-bootstrap";
 import LibrosBuscar from "./crud/buscar";
 import LibrosCrear from "./crud/crear";
 import LibrosEditar from "./crud/editar";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import "./libros.css";
 export default class Libros extends React.Component {
   constructor(props) {
@@ -20,18 +23,18 @@ export default class Libros extends React.Component {
     this.setState({ currentTab: tab });
   }
 
-  setIdLibro(id){
-    this.setState({_id: id});
+  setIdLibro(id) {
+    this.setState({ _id: id });
   }
 
-  getIdLibro(){
+  getIdLibro() {
     return this.state._id;
   }
 
   render() {
     return (
       <Container id="libros-container">
-        <Row>
+        <Row id="botones">
           <Nav
             fill
             variant="tabs"
@@ -39,24 +42,32 @@ export default class Libros extends React.Component {
             onSelect={(eventKey) => this.setState({ currentTab: eventKey })}
           >
             <Nav.Item>
-              <Nav.Link eventKey="buscar">Buscar</Nav.Link>
+              <Nav.Link eventKey="buscar">
+                <FontAwesomeIcon icon={faSearch} />
+                Buscar
+              </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link eventKey="crear">Crear</Nav.Link>
+              <Nav.Link eventKey="crear">
+                <FontAwesomeIcon icon={faPlus} />
+                Crear
+              </Nav.Link>
             </Nav.Item>
           </Nav>
         </Row>
         <Row>
           {this.state.currentTab === "buscar" ? (
-            <LibrosBuscar changeTab={this.changeTab}
+            <LibrosBuscar
+              changeTab={this.changeTab}
               setIdLibro={this.setIdLibro}
             />
-          ) : this.state.currentTab === 'crear' ? (
+          ) : this.state.currentTab === "crear" ? (
             <LibrosCrear changeTab={this.changeTab} />
           ) : (
             <LibrosEditar
               changeTab={this.changeTab}
-              getIdLibro={this.getIdLibro} />
+              getIdLibro={this.getIdLibro}
+            />
           )}
         </Row>
       </Container>

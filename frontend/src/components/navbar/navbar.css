@@ -11,13 +11,26 @@
 }
 #navbar .dropdown-item .svg-inline--fa {
   margin-right: 11px;
+  color: #04989e;
 }
 
 .logo {
-  width: 26%;
+  width: 22%;
 }
 
 .navbar-expand {
   background-color: #fff;
   box-shadow: 1px 1px 11px gray;
+}
+
+#navbar .btn-primary {
+  color: #000000;
+  background-color: transparent;
+  border-color: transparent;
+  font-weight: bold;
+}
+
+#navbar .btn-check:focus + .btn-primary,
+.btn-primary:focus {
+  box-shadow: none !important;
 }

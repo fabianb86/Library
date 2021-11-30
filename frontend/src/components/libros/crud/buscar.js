@@ -68,7 +68,7 @@ export default class LibrosBuscar extends React.Component {
 
   onClicKEditButton(row) {
     this.props.setIdLibro(row._id);
-    this.props.changeTab('editar');
+    this.props.changeTab("editar");
   }
 
   onClickDeleteButton(row) {
@@ -151,13 +151,13 @@ export default class LibrosBuscar extends React.Component {
         <Loading show={this.state.loading} />
 
         <Row>
-          <h1>Catálogo de libros</h1>
+          <h1 id="catalogo">Catálogo de libros</h1>
         </Row>
         <Row>
           <DataGrid
             url="/libros"
             columns={columns}
-            showEditButton={true}           
+            showEditButton={true}
             showDeleteButton={true}
             onClicKEditButton={this.onClicKEditButton}
             onClickDeleteButton={this.onClickDeleteButton}
