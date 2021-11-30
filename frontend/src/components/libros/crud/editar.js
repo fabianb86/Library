@@ -17,8 +17,8 @@ export default class LibrosEditar extends React.Component {
         show: false,
       },
       confirmation: {
-        title: "Modificar Libro",
-        text: "¿Deseas modificar el libro?",
+        title: "Modificar libro",
+        text: "¿Desea modificar el libro?",
         show: false,
       },
       loading: false,

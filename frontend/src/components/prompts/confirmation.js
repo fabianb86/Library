@@ -29,7 +29,7 @@ export default class ConfirmationPrompts extends React.Component {
         </Modal.Header>
 
         <Modal.Body>
-          <p>{this.state.title}</p>
+          <p>{"¿Desea modificar el libro?"}</p>
         </Modal.Body>
 
         <Modal.Footer>
