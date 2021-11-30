@@ -58,13 +58,18 @@ export default class LibrosBuscar extends React.Component {
         show: false,
       },
     };
-
+    this.onClicKEditButton = this.onClicKEditButton.bind(this);
     this.onClickDeleteButton = this.onClickDeleteButton.bind(this);
     this.onCancel = this.onCancel.bind(this);
     //this.onConfirm = this.onConfirm.bind(this);
   }
 
   componentDidMount() {}
+
+  onClicKEditButton(row) {
+    this.props.setIdLibro(row._id);
+    this.props.changeTab('editar');
+  }
 
   onClickDeleteButton(row) {
     console.log("Eliminar elemento:", row);
@@ -152,7 +157,9 @@ export default class LibrosBuscar extends React.Component {
           <DataGrid
             url="/libros"
             columns={columns}
+            showEditButton={true}           
             showDeleteButton={true}
+            onClicKEditButton={this.onClicKEditButton}
             onClickDeleteButton={this.onClickDeleteButton}
           />
         </Row>

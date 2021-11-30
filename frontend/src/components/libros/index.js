@@ -2,18 +2,30 @@ import React from "react";
 import { Container, Nav, Row } from "react-bootstrap";
 import LibrosBuscar from "./crud/buscar";
 import LibrosCrear from "./crud/crear";
+import LibrosEditar from "./crud/editar";
 import "./libros.css";
 export default class Libros extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       currentTab: "buscar",
+      _id: null,
     };
     this.changeTab = this.changeTab.bind(this);
+    this.setIdLibro = this.setIdLibro.bind(this);
+    this.getIdLibro = this.getIdLibro.bind(this);
   }
 
   changeTab(tab) {
     this.setState({ currentTab: tab });
+  }
+
+  setIdLibro(id){
+    this.setState({_id: id});
+  }
+
+  getIdLibro(){
+    return this.state._id;
   }
 
   render() {
@@ -36,9 +48,15 @@ export default class Libros extends React.Component {
         </Row>
         <Row>
           {this.state.currentTab === "buscar" ? (
-            <LibrosBuscar />
-          ) : (
+            <LibrosBuscar changeTab={this.changeTab}
+              setIdLibro={this.setIdLibro}
+            />
+          ) : this.state.currentTab === 'crear' ? (
             <LibrosCrear changeTab={this.changeTab} />
+          ) : (
+            <LibrosEditar
+              changeTab={this.changeTab}
+              getIdLibro={this.getIdLibro} />
           )}
         </Row>
       </Container>
