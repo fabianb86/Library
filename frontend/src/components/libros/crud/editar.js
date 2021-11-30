@@ -4,6 +4,8 @@ import { request } from "../../helper/helper";
 import Loading from "../../loading/loading";
 import MessagePrompt from "../../prompts/message";
 
+import ConfirmationPrompts from "../../prompts/confirmation";
+
 export default class LibrosEditar extends React.Component {
   constructor(props) {
     super(props);
@@ -12,6 +14,11 @@ export default class LibrosEditar extends React.Component {
       rediret: false,
       message: {
         text: "",
+        show: false,
+      },
+      confirmation: {
+        title: "Modificar Libro",
+        text: "¿Deseas modificar el libro?",
         show: false,
       },
       loading: false,
@@ -26,24 +33,26 @@ export default class LibrosEditar extends React.Component {
       },
     };
     this.onExitedMessage = this.onExitedMessage.bind(this);
+    this.onCancel = this.onCancel.bind(this);
+    this.onConfirm = this.onConfirm.bind(this);
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.getLibro();
   }
 
-  getLibro(){
+  getLibro() {
     this.setState({ loading: true });
     request
       .get(`/libros/${this.state.idLibro}`)
-      .then((response) =>{
+      .then((response) => {
         this.setState({
           libro: response.data,
           loading: false,
-        });      
+        });
       })
-      .catch((err)=>{
-        this.setState({loading: false}); 
+      .catch((err) => {
+        this.setState({ loading: false });
       });
   }
   setValue(index, value) {
@@ -59,7 +68,7 @@ export default class LibrosEditar extends React.Component {
     this.setState({ loading: true });
     request
       .put(`/libros/${this.state.idLibro}`, this.state.libro)
-      .then((response) =>{
+      .then((response) => {
         if (response.data.exito) {
           this.setState({
             rediret: response.data.exito,
@@ -81,6 +90,27 @@ export default class LibrosEditar extends React.Component {
     if (this.state.rediret) this.props.changeTab("buscar");
   }
 
+  onCancel() {
+    this.setState({
+      confirmation: {
+        ...this.state.confirmation,
+        show: false,
+      },
+    });
+  }
+
+  onConfirm() {
+    this.setState(
+      {
+        confirmation: {
+          ...this.state.confirmation,
+          show: false,
+        },
+      },
+      this.guardarLibros()
+    );
+  }
+
   render() {
     return (
       <Container id="libros-crear-container">
@@ -91,6 +121,13 @@ export default class LibrosEditar extends React.Component {
           onExited={this.onExitedMessage}
         />
 
+        <ConfirmationPrompts
+          show={this.state.confirmation.show}
+          title={this.state.confirmation.title}
+          text={this.state.confirmation.text}
+          onCancel={this.onCancel}
+          onConfirm={this.onConfirm}
+        />
         <Loading show={this.state.loading} />
 
         <Row>
@@ -176,7 +213,11 @@ export default class LibrosEditar extends React.Component {
 
           <Button
             variant="primary"
-            onClick={() => console.log(this.guardarLibros())}
+            onClick={() =>
+              this.setState({
+                confirmation: { ...this.state.confirmation, show: true },
+              })
+            }
           >
             Guardar Libro
           </Button>
