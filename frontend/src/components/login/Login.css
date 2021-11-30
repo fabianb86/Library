@@ -1,10 +1,10 @@
 #login-container {
   margin-top: 15%;
-  min-height: calc(100vh - 300px);
+  min-height: 450px;
   background-image: url(../img/login.jpg);
   background-position: bottom;
   background-repeat: no-repeat;
-  background-size: 60%;
+  background-size: 52%;
 }
 
 #login-container h2,
@@ -19,4 +19,11 @@
 
 #login-container Button {
   margin-top: 20px;
+}
+
+#login-container .btn-success {
+  color: #fff;
+  background-color: #04989e;
+  border-color: #04989e;
+  font-weight: bold;
 }

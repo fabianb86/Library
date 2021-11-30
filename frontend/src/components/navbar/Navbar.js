@@ -13,12 +13,21 @@ import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import "./navbar.css";
 import NavbarToggle from "react-bootstrap/esm/NavbarToggle";
 import logo from "../img/logo_library.png";
+import Cookies from "universal-cookie/es6";
+
+const cookies = new Cookies();
 
 export default class Topmenu extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
+
+  Logout() {
+    cookies.remove("_s");
+    window.location.reload();
+  }
+
   render() {
     return (
       <Navbar fixed="top" id="navbar" variant="dark">
@@ -44,7 +53,7 @@ export default class Topmenu extends React.Component {
                 <Row>Usuario</Row>
                 <Dropdown.Divider />
               </Dropdown.Header>
-              <Dropdown.Item href="#/action-1">
+              <Dropdown.Item onClick={() => this.Logout()}>
                 <FontAwesomeIcon icon={faSignOutAlt} />
                 Cerrar Sesion
               </Dropdown.Item>
