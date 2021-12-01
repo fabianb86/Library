@@ -3,7 +3,7 @@ import { request } from "../../helper/helper";
 import { Container, Row } from "react-bootstrap";
 // import "./libros.css";
 import DataGrid from "../../grid/grid";
-//import ConfirmationPrompts from "../../prompts/###" pendiente activar
+import ConfirmationPrompts from "../../prompts/confirmation";
 import Loading from "../../loading/loading";
 import MessagePrompt from "../../prompts/message";
 
@@ -49,10 +49,11 @@ export default class LibrosBuscar extends React.Component {
     this.state = {
       loading: false,
       idLibro: null,
-      //confirmation: {
-      //title: "Eliminar Libro",
-      //text: "¿Desea Eliminar el Libro?",
-      //show: "false",,
+      confirmation: {
+        title: "Eliminar Libro",
+        text: "¿Desea Eliminar el Libro?",
+        show: "false",
+      },
       message: {
         text: "",
         show: false,
@@ -61,7 +62,7 @@ export default class LibrosBuscar extends React.Component {
     this.onClicKEditButton = this.onClicKEditButton.bind(this);
     this.onClickDeleteButton = this.onClickDeleteButton.bind(this);
     this.onCancel = this.onCancel.bind(this);
-    //this.onConfirm = this.onConfirm.bind(this);
+    this.onConfirm = this.onConfirm.bind(this);
   }
 
   componentDidMount() {}
@@ -72,16 +73,13 @@ export default class LibrosBuscar extends React.Component {
   }
 
   onClickDeleteButton(row) {
-    console.log("Eliminar elemento:", row);
-    /* this.setState({
+    this.setState({
       idLibro: row._id,
       confirmation: {
         ...this.state.confirmation,
         show: true,
       },
     });
-    this.props.setIdLibro(row._id);
-    this.props.changeTab("eliminar"); */
   }
 
   onCancel() {
@@ -93,16 +91,17 @@ export default class LibrosBuscar extends React.Component {
     });
   }
 
-  /* onConfirm() {
-    this.setState;
-    ({
-      confirmation: {
-        ...this.state.confirmation,
-        show: false,
+  onConfirm() {
+    this.setState(
+      {
+        confirmation: {
+          ...this.state.confirmation,
+          show: false,
+        },
       },
-    },
-      this.eliminarLibro());
-  } */
+      this.eliminarLibro()
+    );
+  }
 
   eliminarLibro() {
     this.setState({ loading: true });
@@ -113,7 +112,7 @@ export default class LibrosBuscar extends React.Component {
           loading: false,
           message: {
             text: response.data.msg,
-            show: false,
+            show: true,
           },
         });
         if (response.data.exito) window.location.reload();
@@ -133,13 +132,15 @@ export default class LibrosBuscar extends React.Component {
   render() {
     return (
       <Container id="libros-buscar-container">
-        {/* <ConfirmationPrompts
-          show={this.state.confirmation.show}
-          tittle={this.state.confirmation.tittle}
-          text={this.state.confirmation.text}
-          onCancel={this.onCancel}
-          onConfirm={this.onConfirm}
-        /> Activar cuando se realice punto 3*/}
+        {
+          <ConfirmationPrompts
+            show={this.state.confirmation.show}
+            title={this.state.confirmation.title}
+            text={this.state.confirmation.text}
+            onCancel={this.onCancel}
+            onConfirm={this.onConfirm}
+          />
+        }
 
         <MessagePrompt
           text={this.state.message.text}
