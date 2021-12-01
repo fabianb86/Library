@@ -3,7 +3,6 @@ import { Container, Row, Form, Button, Col } from "react-bootstrap";
 import { request } from "../../helper/helper";
 import Loading from "../../loading/loading";
 import MessagePrompt from "../../prompts/message";
-
 import ConfirmationPrompts from "../../prompts/confirmation";
 
 export default class LibrosEditar extends React.Component {
@@ -52,6 +51,7 @@ export default class LibrosEditar extends React.Component {
         });
       })
       .catch((err) => {
+        console.error(err);
         this.setState({ loading: false });
       });
   }
@@ -82,7 +82,7 @@ export default class LibrosEditar extends React.Component {
       })
       .catch((err) => {
         console.error(err);
-        this.setState({ loading: false });
+        this.setState({ loading: true });
       });
   }
 
@@ -107,7 +107,7 @@ export default class LibrosEditar extends React.Component {
           show: false,
         },
       },
-      this.guardarLibros()
+      this.guardarLibros(),
     );
   }
 
@@ -219,7 +219,7 @@ export default class LibrosEditar extends React.Component {
               })
             }
           >
-            Guardar Libro
+            Modificar Libro
           </Button>
         </Form>
       </Container>

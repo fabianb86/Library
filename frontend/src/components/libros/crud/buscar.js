@@ -52,7 +52,7 @@ export default class LibrosBuscar extends React.Component {
       confirmation: {
         title: "Eliminar Libro",
         text: "¿Desea Eliminar el Libro?",
-        show: "false",
+        show: false,
       },
       message: {
         text: "",
@@ -65,7 +65,6 @@ export default class LibrosBuscar extends React.Component {
     this.onConfirm = this.onConfirm.bind(this);
   }
 
-  componentDidMount() {}
 
   onClicKEditButton(row) {
     this.props.setIdLibro(row._id);
@@ -99,7 +98,7 @@ export default class LibrosBuscar extends React.Component {
           show: false,
         },
       },
-      this.eliminarLibro()
+      this.eliminarLibro(),
     );
   }
 
@@ -115,7 +114,9 @@ export default class LibrosBuscar extends React.Component {
             show: true,
           },
         });
-        if (response.data.exito) window.location.reload();
+        if (response.data.exito) {
+          this.reloadPage();
+        }
       })
       .catch((err) => {
         console.error(err);
@@ -126,26 +127,24 @@ export default class LibrosBuscar extends React.Component {
   reloadPage() {
     setTimeout(() => {
       window.location.reload();
-    }, 2500);
+    }, 1500);
   }
 
   render() {
     return (
       <Container id="libros-buscar-container">
-        {
-          <ConfirmationPrompts
-            show={this.state.confirmation.show}
-            title={this.state.confirmation.title}
-            text={this.state.confirmation.text}
-            onCancel={this.onCancel}
-            onConfirm={this.onConfirm}
-          />
-        }
+        <ConfirmationPrompts
+          show={this.state.confirmation.show}
+          title={this.state.confirmation.title}
+          text={this.state.confirmation.text}
+          onCancel={this.onCancel}
+          onConfirm={this.onConfirm}
+        />
 
         <MessagePrompt
           text={this.state.message.text}
           show={this.state.message.show}
-          duration={2500}
+          duration={1500}
           onExited={this.onExitedMessage}
         />
 

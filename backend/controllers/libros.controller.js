@@ -61,13 +61,13 @@ exports.update = function (req, res) {
     if (err) {
       (console.log = false),
         (response.exito = false),
-        (response.msg = "error al modificar el Libro");
+        (response.msg = "Error al modificar el Libro");
       res.json(response);
       return;
     }
 
     (response.exito = true),
-      (response.msg = "el Libro se modificó correctamente");
+      (response.msg = "El libro se modificó correctamente");
     res.json(response);
   });
 };
@@ -78,13 +78,13 @@ exports.remove = function (req, res) {
     if (err) {
       (console.error = false),
         (response.exito = false),
-        (response.msg = "error al eliminar el Libro");
+        (response.msg = "Error al eliminar el Libro");
       res.json(response);
       return;
     }
 
     (response.exito = true),
-      (response.msg = "el Libro se elimino correctamente");
+      (response.msg = "El libro se eliminó correctamente");
     res.json(response);
   });
 };
